@@ -33,7 +33,7 @@ class AuthController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        return $this->respondWithToken($token);
+        return $this->responseWithToken($token);
     }
 
     /**
@@ -61,7 +61,7 @@ class AuthController extends Controller
 
         return response()->json(
             array_merge(
-                $this->responeWithToken($token),
+                $this->responseWithToken($token),
                 ['user' => $user]
             )
         );
@@ -85,7 +85,7 @@ class AuthController extends Controller
      */
     public function refresh()
     {
-        return $this->respondWithToken(auth());
+        return $this->responseWithToken(auth());
     }
 
     /**
@@ -95,7 +95,7 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function respondWithToken($token)
+    protected function responseWithToken($token)
     {
         return response()->json([
             'access_token' => $token,
